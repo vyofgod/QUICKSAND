@@ -151,15 +151,14 @@ For security concerns, contact:
 - PGP Key: [Available on request]
 
 For general questions:
-- GitHub Issues: https://github.com/yourusername/devfocus-dashboard/issues
-- Discord: https://discord.gg/devfocus
+- GitHub Issues: https://github.com/vyofgod/QUICKSAND/issues
 
 ## Acknowledgments
 
 We thank the following security researchers for responsibly disclosing vulnerabilities:
 
-- [Your name could be here!]
+- VyOfGod!
 
 ---
 
-Last updated: April 24, 2026
+Last updated: April 26, 2026
