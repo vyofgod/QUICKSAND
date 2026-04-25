@@ -1,0 +1,37 @@
+services:
+  # SurrealDB Database
+  surrealdb:
+    image: surrealdb/surrealdb:v1.5.4
+    container_name: quicksand-db
+    restart: unless-stopped
+    command: start --user root --pass root rocksdb:/data/database.db
+    ports:
+      - "8000:8000"
+    volumes:
+      - surrealdb_data:/data
+
+  # Next.js Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: quicksand-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      SURREALDB_URL: ws://surrealdb:8000/rpc
+      SURREALDB_NAMESPACE: quicksand
+      SURREALDB_DATABASE: main
+      SURREALDB_USER: root
+      SURREALDB_PASSWORD: root
+      NEXTAUTH_URL: http://localhost:3000
+      NODE_ENV: production
+    depends_on:
+      surrealdb:
+        condition: service_healthy
+    env_file:
+      - .env
+
+volumes:
+  surrealdb_data:
